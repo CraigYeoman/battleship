@@ -4,13 +4,24 @@ function sum(a, b) {
 
 const shipFactory = (name, size) => {
   const length = size;
+  const health = [];
+  const healthCalc = () => {
+    let i = 0;
+    while (i < size) {
+      health.push(i);
+      i += 1;
+    }
+  };
+  healthCalc();
   const hits = [];
   const getName = () => name;
-  const hit = position => {
-    
-  }
+  // const hit = position => {
+  //
+  // }
 
-  return { getName, length, hits };
+  return {
+    name, getName, length, hits, health,
+  };
 };
 
 function createShips() {
@@ -22,4 +33,7 @@ function createShips() {
 
 createShips();
 
-module.exports = sum;
+module.exports = {
+  shipFactory,
+  sum,
+};
