@@ -31,10 +31,16 @@ test('Testing if ship has been sunk', () => {
 })
 
 test('Testing if ship has not been sunk', () => {
-    const battleship = shipFactory('Battleship, 5');
+    const battleship = shipFactory('Battleship', 5);
     battleship.hit(0);
     battleship.hit(1);
     battleship.hit(2);
     battleship.hit(3);
     expect(battleship.isSunk()).toBe(false);
+})
+
+test('coordinates', () => {
+    const battleship = shipFactory('Battleship', 5);
+    battleship.coordinates(1, 1, 'up');
+    expect(battleship.shipCoordinates).toEqual([0]);
 })

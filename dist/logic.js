@@ -2,10 +2,11 @@ function sum(a, b) {
   return a + b;
 }
 
-const shipFactory = (name, size) => {
+const shipFactory = (name, size,) => {
   const length = size;
   const hits = [];
   const health = [];
+  const shipCoordinates = [];
   // const getName = () => name;
 
   const healthCalc = () => {
@@ -15,7 +16,39 @@ const shipFactory = (name, size) => {
       i += 1;
     }
   };
-  
+
+  const coordinates =  (x, y, direction) => {
+    let i = 0;
+    switch(direction) {
+      case 'up':
+        while (i < size) {
+          shipCoordinates.push(x, y+i)
+          i +=1 ;
+        }
+      break;
+      case 'down':
+        while (i < size) {
+          shipCoordinates.push([x, y-i])
+          i +=1 ;
+        }
+      break;
+      case 'left':
+        while (i < size) {
+          shipCoordinates.push([x-i, y])
+          i +=1 ;
+        }
+      break;
+      case 'right':
+        while (i < size) {
+          shipCoordinates.push(toString(x+i, y))
+          i +=1 ;
+        }
+      break;
+    }
+
+
+  };
+
   const hit = (position) => {
     hits.push(position);
   };
@@ -31,16 +64,13 @@ const shipFactory = (name, size) => {
 
   healthCalc();
   return {
-    name, length, hits, health, hit, isSunk, healthCalc,
+    name, length, hits, health, hit, isSunk, healthCalc, coordinates, shipCoordinates,
   };
 };
 
-const battleship = shipFactory('Battleship', 5);
-battleship.hit(0);
-battleship.hit(1);
-battleship.hit(2);
-battleship.hit(3);
-battleship.hit(4);
+const gameBoard = () => {
+  shipFactory()
+}
 
 
 module.exports = {
