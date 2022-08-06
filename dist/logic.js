@@ -5,6 +5,7 @@ function sum(a, b) {
 const shipFactory = (name, size,) => {
   const length = size;
   const hits = [];
+  let hitsCounter = 0;
   const health = [];
   const shipCoordinates = [];
   // const getName = () => name;
@@ -22,25 +23,29 @@ const shipFactory = (name, size,) => {
     switch(direction) {
       case 'up':
         while (i < size) {
-          shipCoordinates.push(x, y+i)
+          let cord = [x, y+i]
+          shipCoordinates.push(cord);
           i +=1 ;
         }
       break;
       case 'down':
         while (i < size) {
-          shipCoordinates.push([x, y-i])
+          let cord = [x, y-i]
+          shipCoordinates.push([cord]);
           i +=1 ;
         }
       break;
       case 'left':
         while (i < size) {
-          shipCoordinates.push([x-i, y])
+          let cord = [x-i, y]
+          shipCoordinates.push([cord]);
           i +=1 ;
         }
       break;
       case 'right':
         while (i < size) {
-          shipCoordinates.push(toString(x+i, y))
+          let cord = [x+i, y]
+          shipCoordinates.push(cord);
           i +=1 ;
         }
       break;
@@ -49,15 +54,16 @@ const shipFactory = (name, size,) => {
 
   };
 
-  const hit = (position) => {
-    hits.push(position);
+  const hit = () => {
+    hits.push(hitsCounter);
+    hitsCounter += 1;
   };
 
   const isSunk = () => {
     let hitsSorted = hits.sort(function(a, b){return a - b});
     let newHits = hitsSorted.toString();
     let newHealth = health.toString();
-    if (newHits = newHealth) {
+    if (newHits == newHealth) {
       return true
     } else return false;
   };
@@ -68,8 +74,8 @@ const shipFactory = (name, size,) => {
   };
 };
 
-const gameBoard = () => {
-  shipFactory()
+const gameBoard = (name) => {
+  receiveAttack
 }
 
 
