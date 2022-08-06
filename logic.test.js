@@ -1,10 +1,40 @@
-import {shipFactory, sum} from "./src/logic"
+import {shipFactory, sum} from "./dist/logic"
 
 test('adds 1 + 2 to equal 3', () => {
     expect(sum(1, 2)).toBe(3);
 });
 
-test('create ships', () => {
+test('checking ship health', () => {
     const battleship = shipFactory('Battleship', 5);
-    expect(battleship).toEqual({name: 'battleship', health: [0, 1, 2, 3, 4], lenght: 5});
-});
+    //battleship.healthCalc();
+    expect(battleship.health).toEqual([0, 1, 2, 3 ,4]);
+})
+
+test('Adding if a ship has been hit', () => {
+    const battleship = shipFactory('Battleship', 5);
+    battleship.hit(0);
+    battleship.hit(1);
+    battleship.hit(2);
+    battleship.hit(3);
+    battleship.hit(4);
+    expect(battleship.hits).toEqual([0, 1, 2, 3 ,4]);
+})
+
+test('Testing if ship has been sunk', () => {
+    const battleship = shipFactory('Battleship', 5);
+    battleship.hit(0);
+    battleship.hit(1);
+    battleship.hit(2);
+    battleship.hit(3);
+    battleship.hit(4);
+    expect(battleship.isSunk()).toEqual(true);
+})
+
+test('Testing if ship has not been sunk', () => {
+    const battleship = shipFactory('Battleship, 5');
+    battleship.hit(0);
+    battleship.hit(1);
+    battleship.hit(2);
+    battleship.hit(3);
+    expect(battleship.isSunk()).toBe(false);
+})
